@@ -28,54 +28,38 @@ public class DataGenerator {
 
     private static void generateUserData(List<String[]> data) {
         EasyRandom generator = new EasyRandom();
-        List<User> users = generator.objects(User.class, 200).toList();
+        List<User> users = generator.objects(User.class, 500).toList();
 
         for (User user : users) {
-            data.add(new String[]{
-                    "USER",
-                    user.getUsername(),
-                    user.getEmail()
-            });
-        }
-    }
-
-    private static void generateTicketData(List<String[]> data) {
-        EasyRandom generator = new EasyRandom();
-        List<Ticket> tickets = generator.objects(Ticket.class, 200).toList();
-
-        for (Ticket ticket : tickets) {
-            data.add(new String[]{
-                    "TICKET",
-                    ticket.getTicketType(),
-                    String.valueOf(ticket.getPrice())
-            });
+            data.add(user.toCsvFormat());
         }
     }
 
     private static void generateEventData(List<String[]> data) {
         EasyRandom generator = new EasyRandom();
-        List<Event> events = generator.objects(Event.class, 200).toList();
+        List<Event> events = generator.objects(Event.class, 500).toList();
 
         for (Event event : events) {
-            data.add(new String[]{
-                    "EVENT",
-                    event.getName(),
-                    event.getDate().toString(),
-                    event.getVenue()
-            });
+            data.add(event.toCsvFormat());
         }
     }
 
+    private static void generateTicketData(List<String[]> data) {
+        EasyRandom generator = new EasyRandom();
+        List<Ticket> tickets = generator.objects(Ticket.class, 500).toList();
+
+        for (Ticket ticket : tickets) {
+            data.add(ticket.toCsvFormat());
+        }
+    }
+
+
     private static void generateOrderData(List<String[]> data) {
         EasyRandom generator = new EasyRandom();
-        List<Order> orders = generator.objects(Order.class, 200).toList();
+        List<Order> orders = generator.objects(Order.class, 500).toList();
 
         for (Order order : orders) {
-            data.add(new String[]{
-                    "ORDER",
-                    String.valueOf(order.getQuantity()),
-                    order.getOrderDate().toString()
-            });
+            data.add(order.toCsvFormat());
         }
     }
 }

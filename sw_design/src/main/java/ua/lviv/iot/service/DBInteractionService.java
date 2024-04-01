@@ -34,23 +34,21 @@ public class DBInteractionService {
         List<String[]> data = repository.readAll(filepath);
         data.forEach(entry -> {
             switch (entry[0]) {
-                case "TICKET":
-                    Ticket ticket = ticketService.mapCsvToObject(entry);
-                    ticketService.saveToDatabase(ticket);
-                    break;
-                case "USER": {
+                case "USER" -> {
                     User user = userService.mapCsvToObject(entry);
                     userService.saveToDatabase(user);
-                    break;
                 }
-                case "EVENT":
+                case "EVENT" -> {
                     Event event = eventService.mapCsvToObject(entry);
                     eventService.saveToDatabase(event);
-                    break;
-                case "ORDER": {
+                }
+                case "TICKET" -> {
+                    Ticket ticket = ticketService.mapCsvToObject(entry);
+                    ticketService.saveToDatabase(ticket);
+                }
+                case "ORDER" -> {
                     Order order = orderService.mapCsvToObject(entry);
                     orderService.saveToDatabase(order);
-                    break;
                 }
             }
         });

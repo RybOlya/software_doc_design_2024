@@ -3,6 +3,7 @@ package ua.lviv.iot.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jeasy.random.EasyRandom;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
 public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -22,7 +23,8 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "ticket", fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
     @Basic
@@ -32,11 +34,28 @@ public class Order {
     @Basic
     @Column(name = "order_date", nullable = false)
     private String orderDate;
+
     public Order(User user, Ticket ticket, Integer quantity, String orderDate) {
+        this.user = user;
+        this.ticket = ticket;
         this.quantity = quantity;
         this.orderDate = orderDate;
     }
     public String[] toCsvFormat() {
-        return new String[]{ "ORDER", String.valueOf(this.quantity), this.orderDate};
+        Integer userId = generateRandomId();
+        Integer ticketId = generateRandomId();
+
+        return new String[]{
+                "ORDER",
+                userId.toString(),
+                ticketId.toString(),
+                this.quantity.toString(),
+                this.orderDate
+        };
+    }
+    private Integer generateRandomId() {
+        EasyRandom generator = new EasyRandom();
+        generator.setSeed(System.nanoTime());
+        return generator.nextInt(1, 201);
     }
 }

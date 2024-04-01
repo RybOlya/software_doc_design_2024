@@ -16,7 +16,7 @@ public class Event {
     private Integer id;
 
     @Basic
-    @Column(name = "name", length = 30, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Basic
