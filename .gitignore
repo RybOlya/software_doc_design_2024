@@ -1,12 +1,7 @@
 # Compiled class file
 *.class
-sw_design/.gitignore
 .idea/
-sw_design/.gitignore
 sw_design/.idea/
-sw_design/src/main/java/ua/lviv/iot/dto/
-sw_design/src/main/resources/templates/
-sw_design/src/test/
 sw_design/target/
 # Log file
 *.log
