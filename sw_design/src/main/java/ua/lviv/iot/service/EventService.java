@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Service
 public class EventService extends AbstractService<Event> {
-
     @Autowired
     public EventService(EventRepository eventRepository) {
         super(eventRepository);

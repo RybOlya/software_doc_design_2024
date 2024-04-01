@@ -17,8 +17,8 @@ public class DataGenerator {
         List<String[]> data = new ArrayList<>();
 
         generateUserData(data);
-        generateTicketData(data);
         generateEventData(data);
+        generateTicketData(data);
         generateOrderData(data);
 
         try (CSVWriter writer = new CSVWriter(new FileWriter("data.csv"))) {

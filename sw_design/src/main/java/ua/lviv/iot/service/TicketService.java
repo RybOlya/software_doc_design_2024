@@ -21,6 +21,8 @@ public class TicketService extends AbstractService<Ticket> {
     @Override
     public Ticket mapCsvToObject(String[] objectCsv) {
         String id = objectCsv[0];
+        Integer eventid = Integer.parseInt(objectCsv[1]);
+        List<Event> listev = eventService.findAll();
         Event event = eventService.getById(Integer.parseInt(objectCsv[1]));
         String ticketType = objectCsv[2];
         Double price = Double.parseDouble(objectCsv[3]);

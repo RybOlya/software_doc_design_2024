@@ -1,13 +1,17 @@
 package ua.lviv.iot.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
-@Entity
+
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity
 @Table(name = "event")
 public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +20,15 @@ public class Event {
     private Integer id;
 
     @Basic
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Basic
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private String date;
 
     @Basic
-    @Column(name = "venue", nullable = false)
+    @Column(name = "venue")
     private String venue;
 
     public Event(String eventName, String eventDate, String venue) {
