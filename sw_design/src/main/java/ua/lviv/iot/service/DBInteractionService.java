@@ -40,7 +40,6 @@ public class DBInteractionService {
                 }
                 case "EVENT" -> {
                     Event event = eventService.mapCsvToObject(entry);
-                    eventService.findAll();
                     eventService.saveToDatabase(event);
                 }
                 case "TICKET" -> {

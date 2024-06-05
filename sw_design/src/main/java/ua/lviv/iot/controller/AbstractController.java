@@ -1,4 +1,4 @@
-package ua.lviv.iot.Taxi.controller;
+package ua.lviv.iot.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
